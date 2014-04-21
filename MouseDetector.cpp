@@ -7,7 +7,7 @@ std::string MouseDetector::convertInt(int num) {
 }
 
 void MouseDetector::setMinArea(int minArea) {
-		minMarkerArea = minArea;
+	minMarkerArea = minArea;
 }
 
 void MouseDetector::setCenterHSV(int H, int S, int V) {
@@ -110,7 +110,6 @@ void MouseDetector::processCenterMarker(cv::Mat &image) {
 
 void MouseDetector::processLeftMarker(cv::Mat &image) {
 	cv::cvtColor(image,image,CV_BGR2HSV);
-	upperLeft[3] = 255;
 	cv::inRange(image,lowerLeft,upperLeft,result);
 	cv::findContours(result,contoursLeft,CV_RETR_EXTERNAL,CV_CHAIN_APPROX_NONE);
 	cv::cvtColor(image,image,CV_HSV2BGR);
@@ -143,8 +142,6 @@ void MouseDetector::processRightMarker(cv::Mat &image) {
 
 void MouseDetector::processScrollMarker(cv::Mat &image) {
 	cv::cvtColor(image,image,CV_BGR2HSV);
-	//lowerScroll[1] = 150;
-	upperScroll[2] = 255;
 	cv::inRange(image,lowerScroll,upperScroll,result);
 	cv::findContours(result,contoursScroll,CV_RETR_EXTERNAL,CV_CHAIN_APPROX_NONE);
 	cv::cvtColor(image,image,CV_HSV2BGR);
@@ -167,10 +164,6 @@ void MouseDetector::calibrateCoordinates(cv::Point &coordinates) {
 }
 
 void MouseDetector::moveMouse(cv::Point coordinates) {
-	//calibrateCoordinates(coordinates);
-	//int x_coord = coordinates.x;
-	//int y_coord = coordinates.y;
-	//if (x_coord != 0 || y_coord != 0) {
 	SetCursorPos(coordinates.x,coordinates.y);
 
 }
