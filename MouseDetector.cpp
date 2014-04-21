@@ -165,7 +165,6 @@ void MouseDetector::calibrateCoordinates(cv::Point &coordinates) {
 
 void MouseDetector::moveMouse(cv::Point coordinates) {
 	SetCursorPos(coordinates.x,coordinates.y);
-
 }
 
 bool MouseDetector::getLeftClickStatus() {
