@@ -1,5 +1,4 @@
 #include "MouseDetector.h"
-#include <iostream>
 #include <time.h>
 
 cv::Mat image;
@@ -13,10 +12,6 @@ bool leftClickStatus;
 bool rightClickStatus;
 
 clock_t t;
-
-void printCoordinatesOnConsole() {
-	std::cout << "Mouse Coordinates: (" << mouseCoordinates.x << "," << mouseCoordinates.y << ")" << std::endl;
-}
 
 float getTime() {
 	return float(clock() - t)/CLOCKS_PER_SEC;
@@ -75,7 +70,6 @@ int main() {
 		if (MouseGlove.getRightClickStatus() != rightClickStatus)
 			toggleRightClick();
 		if (MouseGlove.scrollDetected()) {
-			std::cout << "scroll speed: " << MouseGlove.getScrollSpeed() << std::endl;
 			MouseGlove.scroll(mouseCoordinates,MouseGlove.getScrollSpeed());
 		}
 		MouseGlove.displayMouseStatus(image);
