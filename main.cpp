@@ -1,6 +1,5 @@
 #include "MouseDetector.h"
 #include <iostream>
-#include <fstream>
 #include <time.h>
 
 cv::Mat image;
