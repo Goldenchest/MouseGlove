@@ -7,7 +7,7 @@ std::string MouseDetector::convertInt(int num) {
 }
 
 void MouseDetector::setMinArea(int minArea) {
-		minMarkerArea = minArea;
+	minMarkerArea = minArea;
 }
 
 void MouseDetector::setCenterHSV(int H, int S, int V) {
