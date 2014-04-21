@@ -7,7 +7,7 @@ std::string MouseDetector::convertInt(int num) {
 }
 
 void MouseDetector::setMinArea(int minArea) {
-	minMarkerArea = minArea;
+		minMarkerArea = minArea;
 }
 
 void MouseDetector::setCenterHSV(int H, int S, int V) {
@@ -110,6 +110,7 @@ void MouseDetector::processCenterMarker(cv::Mat &image) {
 
 void MouseDetector::processLeftMarker(cv::Mat &image) {
 	cv::cvtColor(image,image,CV_BGR2HSV);
+	upperLeft[3] = 255;
 	cv::inRange(image,lowerLeft,upperLeft,result);
 	cv::findContours(result,contoursLeft,CV_RETR_EXTERNAL,CV_CHAIN_APPROX_NONE);
 	cv::cvtColor(image,image,CV_HSV2BGR);
@@ -134,7 +135,7 @@ void MouseDetector::processRightMarker(cv::Mat &image) {
 		for (itc = contoursRight.begin(); itc != contoursRight.end(); ++itc) {
 			if (cv::contourArea(*itc) > minMarkerArea) {
 				bRightClickDetected = true;
-				cv::rectangle(image,cv::boundingRect(cv::Mat(*itc)),orangeColor,2);
+				cv::rectangle(image,cv::boundingRect(cv::Mat(*itc)),yellowColor,2);
 			}
 		}
 	}
@@ -142,6 +143,8 @@ void MouseDetector::processRightMarker(cv::Mat &image) {
 
 void MouseDetector::processScrollMarker(cv::Mat &image) {
 	cv::cvtColor(image,image,CV_BGR2HSV);
+	//lowerScroll[1] = 150;
+	upperScroll[2] = 255;
 	cv::inRange(image,lowerScroll,upperScroll,result);
 	cv::findContours(result,contoursScroll,CV_RETR_EXTERNAL,CV_CHAIN_APPROX_NONE);
 	cv::cvtColor(image,image,CV_HSV2BGR);
@@ -164,6 +167,10 @@ void MouseDetector::calibrateCoordinates(cv::Point &coordinates) {
 }
 
 void MouseDetector::moveMouse(cv::Point coordinates) {
+	//calibrateCoordinates(coordinates);
+	//int x_coord = coordinates.x;
+	//int y_coord = coordinates.y;
+	//if (x_coord != 0 || y_coord != 0) {
 	SetCursorPos(coordinates.x,coordinates.y);
 
 }
@@ -229,7 +236,7 @@ void MouseDetector::displayMouseStatus(cv::Mat &image) {
 	if (getLeftClickStatus() == true) {
 		cv::putText(image,"Left Click",cv::Point(10,70+40*scrollDetected()),cv::FONT_HERSHEY_SIMPLEX,scale,yellowColor,thickness);
 	} else if (getRightClickStatus() == true) {
-		cv::putText(image,"Right Click",cv::Point(10,70+40*scrollDetected()),cv::FONT_HERSHEY_SIMPLEX,scale,orangeColor,thickness);
+		cv::putText(image,"Right Click",cv::Point(10,70+40*scrollDetected()),cv::FONT_HERSHEY_SIMPLEX,scale,yellowColor,thickness);
 	}
 
 }

@@ -29,10 +29,7 @@ private:
 	cv::Scalar scrollHSV;
 
 	cv::Scalar tealColor;
-	cv::Scalar magentaColor;
 	cv::Scalar greenColor;
-	cv::Scalar redColor;
-	cv::Scalar orangeColor;
 	cv::Scalar yellowColor;
 
 	bool bMouseDetected;
@@ -68,10 +65,7 @@ public:
 		bRightClickDetected = false;
 		bScrollDetected = false;
 		tealColor = cv::Scalar(255,255,0);
-		magentaColor = cv::Scalar(255,50,255);
 		greenColor = cv::Scalar(0,230,0);
-		redColor = cv::Scalar(200,150,255);
-		orangeColor = cv::Scalar(0,255,255);
 		yellowColor = cv::Scalar(0,255,255);
 	};
 	void setMinArea(int minArea);
