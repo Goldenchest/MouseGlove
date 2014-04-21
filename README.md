@@ -1,3 +1,5 @@
+*comments to be added by the end of April*
+
 WHAT IT IS:
 This project uses OpenCV to detect and translate hand gestures into mouse events.
 
